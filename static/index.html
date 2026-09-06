@@ -32,7 +32,7 @@
       align-items: baseline;
       border-bottom: 2px solid var(--brass);
       padding-bottom: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     h1 {
       font-family: 'Playfair Display', serif;
@@ -47,6 +47,32 @@
       color: var(--brass);
       text-transform: uppercase;
     }
+    .hint {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .hint-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-right: 4px;
+    }
+    .chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      background: none;
+      border: 1px solid var(--brass);
+      color: var(--forest);
+      padding: 4px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .chip:hover { background: var(--brass); color: #fff; }
     #chat {
       display: flex;
       flex-direction: column;
@@ -132,6 +158,14 @@
       <h1>University Advisor</h1>
       <span class="est">Est. 2026 &middot; Records Office</span>
     </header>
+
+    <div class="hint">
+      <span class="hint-label">Try asking:</span>
+      <button class="chip" onclick="ask('Tuition at Berkeley')">Tuition at Berkeley</button>
+      <button class="chip" onclick="ask('Compare Berkeley and UCLA')">Compare Berkeley and UCLA</button>
+      <button class="chip" onclick="ask('Admission rate at Harvard')">Admission rate at Harvard</button>
+    </div>
+
     <div id="chat"></div>
     <div class="input-row">
       <input id="question" type="text" placeholder="Ask about a school...">
@@ -165,6 +199,11 @@
       chatDiv.appendChild(card);
       chatDiv.scrollTop = chatDiv.scrollHeight;
       return card;
+    }
+
+    function ask(text) {
+      input.value = text;
+      send();
     }
 
     async function send() {
