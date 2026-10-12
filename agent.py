@@ -12,7 +12,7 @@ COLLEGE_SCORECARD_API_KEY = os.environ["COLLEGE_SCORECARD_API_KEY"]
 client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
 
-def search_schools(name=None, state=None, fields=None, per_page=5):
+def search_schools(name=None, state=None, fields=None, per_page=10):
     """Search College Scorecard for schools matching filters."""
     if fields is None:
         fields = "school.name,school.city,school.state,latest.cost.tuition.in_state,latest.admissions.admission_rate.overall"
